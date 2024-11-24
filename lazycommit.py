@@ -30,7 +30,7 @@ def lazycommit(repo_path):
                 repo.git.add(file_path)
 
                 # Commit file
-                repo.git.commit(m=file_path, message=commit_message)
+                repo.git.commit('-m', commit_message)
             else:
                 print(f"File {file_path} not found. Skipping...")
 
