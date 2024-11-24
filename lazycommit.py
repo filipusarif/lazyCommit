@@ -21,7 +21,7 @@ def read_file_with_encoding(file_path):
 
 def lazycommit(repo_path):
     repo = git.Repo(repo_path)
-    print("hello")
+
     if repo.is_dirty():
         repo_root = repo.working_tree_dir
         changed_files = [item.a_path for item in repo.index.diff(None)]
@@ -44,25 +44,25 @@ def lazycommit(repo_path):
             # Ambil konten baru dari file
             new_content = read_file_with_encoding(abs_file_path)
             if new_content is None:
-                print(f"Could not read file: {file_path}. Skipping...")
+                print(f"gak dapet: {file_path}. Skipping...")
                 continue
 
             # Generate pesan commit otomatis
             commit_message = generate_commit_message(file_path, old_content, new_content)
-            print(f"Generated commit message: {commit_message}")
+            print(f"generate dulu: {commit_message}")
 
-            # Tambahkan file ke staging
+            # Tambahkan ke staging
             repo.git.add(file_path)
 
-            # Commit file dengan pesan commit
+            # Commit
             repo.git.commit('-m', commit_message)
 
-        # Push perubahan
+        # Push
         origin = repo.remote(name='origin')
         origin.push()
-        print("Push successful!")
+        print("Udah ke push wak!")
     else:
-        print("No changes detected in the repository.")
+        print("ga ada perubahan wak.")
 
 
 if __name__ == "__main__":
