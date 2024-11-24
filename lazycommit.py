@@ -11,7 +11,7 @@ def read_file_with_encoding(file_path):
     try:
         result = from_path(file_path).best()
         if result:
-            return str(result)  # Konten file sebagai string
+            return str(result) 
         else:
             raise ValueError(f"Could not decode {file_path}")
     except Exception as e:
@@ -39,7 +39,7 @@ def lazycommit(repo_path):
             try:
                 old_content = repo.git.show(f'HEAD:{file_path}')
             except git.exc.GitCommandError:
-                old_content = ""  # File baru, tidak ada versi lama
+                old_content = "" 
 
             # Ambil konten baru dari file
             new_content = read_file_with_encoding(abs_file_path)
