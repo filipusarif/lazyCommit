@@ -25,7 +25,6 @@ def generate_commit_message(file_path, old_content, new_content):
     if removed_lines:
         message_parts.append(f"Removed {len(removed_lines)} lines from {file_path}")
 
-    # Analisis spesifik konten
     if any('color' in line.lower() for line in added_lines + removed_lines):
         message_parts.append(f"Modified styles/colors in {file_path}")
     if any('function' in line.lower() for line in added_lines):
@@ -33,5 +32,4 @@ def generate_commit_message(file_path, old_content, new_content):
     if any('class' in line.lower() for line in added_lines + removed_lines):
         message_parts.append(f"Modified class definitions in {file_path}")
     
-    # Gabungkan pesan
     return "; ".join(message_parts) if message_parts else f"Updated {file_path}"
